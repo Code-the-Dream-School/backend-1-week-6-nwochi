@@ -1,0 +1,49 @@
+<h1>Project Web Guesser</h1>
+<h3>You've got 7 tries; start guessing!</h3>
+    <p>Tries taken = 0</p>
+        <% secret_number = rand(101) %>
+        <% guess_collection = [] %>
+    <p><%= puts "Your guesses, so far: #{guess_collection}" %></p>
+        <form>
+            <input type="number" name="guess">
+            <input type="submit" name="submit" value="submit guess">
+        </form>
+        
+    <% def user_guesses %>
+        <% loop do %>
+            <% guesses = gets.chomp %>
+            <% guess_collection << guesses %>
+            <% user_progess %>
+            <% attempts %>
+            <% break if guess_collection.length == 7 %>
+        <% end %>
+    <% end %>
+    
+   <% def attempts %>
+        <% tries = 0 %>
+        <% while tries < guess_collection.length %>
+            <% tries += 1 %>
+            <p><%= puts "You have #{7 - tries} tries left."%></p>
+            <form>
+                <input type="number" name="guess">
+                <input type="submit" name="submit" value="submit guess">
+            </form>
+                <% if tries == 7 %>
+                    <p><%= puts "No more guesses; you lose :(" %></p>
+                <% end %>
+        <% end %>
+    <% end %>
+    
+    <% def user_progess %>
+        <% if guess == secret_number %>
+            <p><%= puts "YOU WIN!!!" %></p>
+            <% elsif guess < secret_number - 10 %>
+               <p><%= puts "Your guess is much too low, womp...womp" %></p>
+            <% elsif guess > secret_number - 10 && guess < secret_number %>
+                <p><%= puts "Your guess is close, but too low." %></p>
+            <% elsif guess > secret_number + 10 %>
+                <p><%= puts "Your guess is way too high o.O"%></p>
+            <% elsif guess < secret_number + 10 && guess > secret_number %>
+                <p><%= puts "Your guess is close, but too high." %></p>
+        <% end %>
+    <% end %>
