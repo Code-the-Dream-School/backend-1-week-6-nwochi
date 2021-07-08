@@ -1,0 +1,14 @@
+<h1>Project Web Guesser</h1>
+<h3>You've used all 7 tries! Game complete!!</h3>
+    <p><%= puts "The secret number was: #{secret_number}" %></p>
+    <p><%= puts "Your guess: #{guess_collection}" %></p>
+    
+    <% if  guess == secret_number %>
+        <p><%= puts "YOU WIN!!!" %></p>%>
+        <% elsif tries == 7 %>
+            <p><%= puts "No more guesses; you lose :(" %></p>
+    <% end %>
+    
+    <form>
+        <input type="submit" name="submit" value="Play again?">
+    </form>
